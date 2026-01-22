@@ -159,4 +159,8 @@
     max-width: 380px;
     height: 200px;
   }
+
+  .cards-wrapper2 {
+    padding: 20px 0;
+  }
 }

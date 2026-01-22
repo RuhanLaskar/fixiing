@@ -62,6 +62,12 @@
       hamburgerBtn.addEventListener('click', () => {
         hamburgerBtn.classList.toggle('active');
         mainNav.classList.toggle('active');
+
+        if (mainNav.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
       });
 
       // Close menu when any link is clicked
@@ -69,6 +75,7 @@
         link.addEventListener('click', () => {
           hamburgerBtn.classList.remove('active');
           mainNav.classList.remove('active');
+          document.body.style.overflow = '';
         });
       });
     </script>
@@ -89,11 +96,13 @@
 <script>
   function closeFakeSiteWarning() {
     document.getElementById('fakeSiteWarningModal').style.display = 'none';
+    document.body.style.overflow = '';
   }
 
   // Optional: Auto-show on load
   window.addEventListener('DOMContentLoaded', function () {
     document.getElementById('fakeSiteWarningModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   });
 </script>
 
@@ -132,10 +141,10 @@
                         </div>
                     </div>
                 </div>
-            </section>    
+            </section>
 
 
-            
+
 <!-- Our Services Section -->
 <section class="services-section" id="services">
   <!-- Background Spiral -->
@@ -243,113 +252,10 @@
           <p>Bring ideas to life with world-class 2D & 3D animation crafted for product demos, ads, or branding visuals.</p>
         </div>
       </div>
+      <div class="mobile-dots"></div>
     </div>
   </div>
 </section>
-<script>
-function initMobileCarousel() {
-  if (window.innerWidth > 468) return;
-
-  const slider = document.querySelector('.cards-slider');
-  const cards = document.querySelectorAll('.service-card');
-  const dotsContainer = document.querySelector('.mobile-dots');
-
-  if (!slider || !cards.length || !dotsContainer) return;
-
-  cards.forEach(card => {
-    card.style.transform = '';
-    card.style.opacity = '';
-    card.style.zIndex = '';
-    card.style.filter = '';
-  });
-
-  dotsContainer.innerHTML = '';
-  cards.forEach((_, index) => {
-    const dot = document.createElement('span');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => {
-      cards[index].scrollIntoView({ behavior: 'smooth', inline: 'start' });
-    });
-    dotsContainer.appendChild(dot);
-  });
-
-  slider.addEventListener('scroll', () => {
-    const cardWidth = cards[0].offsetWidth + 16;
-    const scrollLeft = slider.scrollLeft;
-    const index = Math.round(scrollLeft / cardWidth);
-    const dots = dotsContainer.querySelectorAll('.dot');
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-  });
-}
-
-function init3DCarousel() {
-  if (window.innerWidth <= 768) return;
-
-  const cards = document.querySelectorAll('.service-card');
-  if (!cards.length) return;
-
-  let activeIndex = 0;
-  let autoSlideInterval;
-
-  function apply3DCarouselEffect() {
-    cards.forEach((card, i) => {
-      card.style.position = 'absolute';
-      card.style.opacity = '0';
-      card.style.zIndex = '0';
-      card.style.filter = 'blur(5px)';
-      card.style.transform = 'scale(0.8)';
-    });
-
-    const totalCards = cards.length;
-    const center = activeIndex % totalCards;
-    cards[center].style.opacity = '1';
-    cards[center].style.zIndex = '1';
-    cards[center].style.transform = 'none';
-    cards[center].style.filter = 'none';
-
-    for (let i = 1; i <= 3; i++) {
-      let rightIdx = (activeIndex + i) % totalCards;
-      let leftIdx = (activeIndex - i + totalCards) % totalCards;
-
-      cards[rightIdx].style.transform = `translateX(${120 * i}px) scale(${1 - 0.2 * i}) perspective(1000px) rotateY(-1deg)`;
-      cards[rightIdx].style.zIndex = -i;
-      cards[rightIdx].style.opacity = i > 2 ? 0 : 0.6;
-
-      cards[leftIdx].style.transform = `translateX(${-120 * i}px) scale(${1 - 0.2 * i}) perspective(1000px) rotateY(1deg)`;
-      cards[leftIdx].style.zIndex = -i;
-      cards[leftIdx].style.opacity = i > 2 ? 0 : 0.6;
-    }
-  }
-
-  cards.forEach((card, i) => {
-    card.addEventListener('click', () => {
-      if (i !== activeIndex) {
-        activeIndex = i;
-        apply3DCarouselEffect();
-      }
-    });
-    card.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-    card.addEventListener('mouseleave', () => startAutoSlide());
-  });
-
-  function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-      activeIndex = (activeIndex + 1) % cards.length;
-      apply3DCarouselEffect();
-    }, 3000);
-  }
-
-  apply3DCarouselEffect();
-  startAutoSlide();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initMobileCarousel();
-  init3DCarousel();
-});
-
-</script>
 
 
 
@@ -974,7 +880,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <div class="clients-slider5">
 
-      
+
       <div class="clients-track5">
         <!-- Client Logo + Divider -->
         <div class="client-item5">
@@ -1094,7 +1000,7 @@ document.addEventListener('DOMContentLoaded', () => {
           MDrehab clearly understood how to fix a patient. But when it came to fixing their social media, they had constant failures.
         </p>
         <p>
-          Reel after reel, their view count kept falling until we stepped in July 2024. Along with our creative direction, we brought 
+          Reel after reel, their view count kept falling until we stepped in July 2024. Along with our creative direction, we brought
           storytelling, better visuals, and crisper scripts, which boosted them from 212k to 450k followers within a few weeks.
         </p>
         <p>
@@ -1126,10 +1032,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Right Side -->
     <div class="contact-right">
       <form action="https://formspree.io/f/mgvydqpl" method="POST" class="contact-form">
-        
+
         <!-- Redirect after submission -->
         <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-        
+
         <!-- Spam prevention honeypot -->
         <input type="text" name="_gotcha" style="display: none;">
 
@@ -1199,9 +1105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <div class="map-container6">
-      <iframe 
-        src="https://maps.google.com/maps?q=Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-        frameborder="0" 
+      <iframe
+        src="https://maps.google.com/maps?q=Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        frameborder="0"
         allowfullscreen>
       </iframe>
 
