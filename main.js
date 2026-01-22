@@ -133,6 +133,9 @@ function setupHover(container, player) {
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
+    initMobileCarousel();
+    init3DCarousel();
+
     const cards = [
         {
             el: document.querySelector(".card-left2"),
@@ -156,12 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Animate in (scroll into view)
         gsap.fromTo(card.el,
-            { 
-                x: card.entryFrom.x, 
-                y: card.entryFrom.y, 
-                opacity: 0, 
-                scale: 0.9, 
-                rotate: card.entryFrom.rotate 
+            {
+                x: card.entryFrom.x,
+                y: card.entryFrom.y,
+                opacity: 0,
+                scale: 0.9,
+                rotate: card.entryFrom.rotate
             },
             {
                 x: 0, y: 0, opacity: 1, scale: 1, rotate: 0,
@@ -183,10 +186,10 @@ document.addEventListener("DOMContentLoaded", () => {
             end: "bottom top",
             onEnter: () => {
                 gsap.to(card.el, {
-                    x: card.exitTo.x, 
-                    y: card.exitTo.y, 
-                    opacity: 0, 
-                    scale: 0.7, 
+                    x: card.exitTo.x,
+                    y: card.exitTo.y,
+                    opacity: 0,
+                    scale: 0.7,
                     rotate: card.exitTo.rotate,
                     duration: 0.3,            // faster than before
                     ease: "expo.inOut"        // smooth in and out
@@ -194,10 +197,10 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             onLeaveBack: () => {
                 gsap.to(card.el, {
-                    x: card.entryFrom.x, 
-                    y: card.entryFrom.y, 
-                    opacity: 0, 
-                    scale: 0.7, 
+                    x: card.entryFrom.x,
+                    y: card.entryFrom.y,
+                    opacity: 0,
+                    scale: 0.7,
                     rotate: card.entryFrom.rotate,
                     duration: 0.3,            // faster than before
                     ease: "expo.inOut"        // smooth in and out
@@ -209,37 +212,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function initMobileCarousel() {
-  if (window.innerWidth > 468) return; // Only for ≤468px
+  if (window.innerWidth > 468) return;
 
-  const container = document.querySelector('.cards-slider');
+  const slider = document.querySelector('.cards-slider');
   const cards = document.querySelectorAll('.service-card');
   const dotsContainer = document.querySelector('.mobile-dots');
 
-  // Clear previous dots if any
-  dotsContainer.innerHTML = '';
+  if (!slider || !cards.length || !dotsContainer) return;
 
-  // Create dots
+  cards.forEach(card => {
+    card.style.transform = '';
+    card.style.opacity = '';
+    card.style.zIndex = '';
+    card.style.filter = '';
+  });
+
+  dotsContainer.innerHTML = '';
   cards.forEach((_, index) => {
-    const dot = document.createElement('div');
+    const dot = document.createElement('span');
     dot.classList.add('dot');
     if (index === 0) dot.classList.add('active');
     dot.addEventListener('click', () => {
-      container.scrollTo({
-        left: container.clientWidth * index,
-        behavior: 'smooth'
-      });
+      cards[index].scrollIntoView({ behavior: 'smooth', inline: 'start' });
     });
     dotsContainer.appendChild(dot);
   });
 
-  // Update active dot on scroll
-  container.addEventListener('scroll', () => {
-    const index = Math.round(container.scrollLeft / container.clientWidth);
+  slider.addEventListener('scroll', () => {
+    const cardWidth = cards[0].offsetWidth + 16;
+    const scrollLeft = slider.scrollLeft;
+    const index = Math.round(scrollLeft / cardWidth);
     const dots = dotsContainer.querySelectorAll('.dot');
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
-    });
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
   });
+}
+
+function init3DCarousel() {
+  if (window.innerWidth <= 768) return;
+
+  const cards = document.querySelectorAll('.service-card');
+  if (!cards.length) return;
+
+  let activeIndex = 0;
+  let autoSlideInterval;
+
+  function apply3DCarouselEffect() {
+    cards.forEach((card, i) => {
+      card.style.position = 'absolute';
+      card.style.opacity = '0';
+      card.style.zIndex = '0';
+      card.style.filter = 'blur(5px)';
+      card.style.transform = 'scale(0.8)';
+    });
+
+    const totalCards = cards.length;
+    const center = activeIndex % totalCards;
+    cards[center].style.opacity = '1';
+    cards[center].style.zIndex = '1';
+    cards[center].style.transform = 'none';
+    cards[center].style.filter = 'none';
+
+    for (let i = 1; i <= 3; i++) {
+      let rightIdx = (activeIndex + i) % totalCards;
+      let leftIdx = (activeIndex - i + totalCards) % totalCards;
+
+      cards[rightIdx].style.transform = `translateX(${120 * i}px) scale(${1 - 0.2 * i}) perspective(1000px) rotateY(-1deg)`;
+      cards[rightIdx].style.zIndex = -i;
+      cards[rightIdx].style.opacity = i > 2 ? 0 : 0.6;
+
+      cards[leftIdx].style.transform = `translateX(${-120 * i}px) scale(${1 - 0.2 * i}) perspective(1000px) rotateY(1deg)`;
+      cards[leftIdx].style.zIndex = -i;
+      cards[leftIdx].style.opacity = i > 2 ? 0 : 0.6;
+    }
+  }
+
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+      if (i !== activeIndex) {
+        activeIndex = i;
+        apply3DCarouselEffect();
+      }
+    });
+    card.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    card.addEventListener('mouseleave', () => startAutoSlide());
+  });
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+      activeIndex = (activeIndex + 1) % cards.length;
+      apply3DCarouselEffect();
+    }, 3000);
+  }
+
+  apply3DCarouselEffect();
+  startAutoSlide();
 }
 
 
