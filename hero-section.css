@@ -31,13 +31,22 @@ body {
 html, body {
   margin: 0 !important;
   padding: 0 !important;
-  overflow-x: hidden;
-  overscroll-behavior-y: none;
   font-family: 'Sora', sans-serif;
   background: linear-gradient(to right, #000000 23%, #000068 100%);
   color: #fff;
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  overscroll-behavior-y: none;
 }
 
 .wrapper {
