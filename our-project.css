@@ -1,0 +1,162 @@
+/* === Projects Section Container === */
+.projects-section2 {
+  padding: 120px 20px;
+  background-image: url('https://res.cloudinary.com/dvabb4elb/image/upload/v1750871797/video-grid-bg_mb3two.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  max-width: 1309px;
+  height: 1400px;
+  margin: 0 auto;
+}
+
+/* === Section Heading === */
+.section-header2 {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.section-header2 h2 {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 46px;
+  font-weight: 800;
+  margin-top: 100px;
+  background: linear-gradient(to right, #6268AA 13%, #8F98FF 45%, #9A4281 55%, #AC134B 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-header2::after {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 350px;
+  height: 4px;
+  background: url('https://res.cloudinary.com/dvabb4elb/image/upload/v1750871772/client-Line_swpeyd.svg') no-repeat center/contain;
+}
+
+/* === Cards Wrapper === */
+.cards-wrapper2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* === Individual Card === */
+.project-card2 {
+  width: 350px;
+  height: 350px;
+  border: 5px solid #8000ff;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;              /* ⬅️ Important */
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+  display: flex;
+}
+
+.card-content2 {
+    padding: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;              /* ⬅️ Important */
+  border-radius: inherit;        /* ⬅️ Inherit card's rounded corners */
+}
+
+.thumbnail2 {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000000;          /* ⬅️ Ensures full image is shown without cropping */
+  display: block;
+  border-radius: inherit;
+  position: relative;
+  z-index: 2;                   /* ⬅️ Stay above iframe initially */
+}
+
+.card-content2 iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: none;               /* ⬅️ Hide by default */
+  z-index: 1;                  /* ⬅️ Behind thumbnail by default */
+}
+
+/* === Responsive: Tablet === */
+@media (max-width: 1100px) {
+  .section-header2 {
+    margin-bottom: 60px;
+  }
+
+  .section-header2 h2 {
+    font-size: 36px;
+  }
+
+  .section-header2::after {
+    width: 280px;
+  }
+
+  .cards-wrapper2 {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 20px 0 20px 200px;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-card2 {
+    flex: 0 0 auto;
+    opacity: 1 !important;
+    transform: none !important;
+    scroll-snap-align: start;
+  }
+
+  .cards-wrapper2::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  .cards-wrapper2::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .cards-wrapper2::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #8F98FF, #AC134B);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .cards-wrapper2::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to right, #6268AA, #9A4281);
+  }
+}
+
+/* === Responsive: Mobile === */
+@media (max-width: 468px) {
+  .projects-section2 {
+    padding: 60px 20px;
+    height: auto;
+  }
+
+  .section-header2 h2 {
+    font-size: 28px;
+  }
+
+  .section-header2::after {
+    width: 220px;
+  }
+
+  .project-card2 {
+    width: 100%;
+    max-width: 380px;
+    height: 200px;
+  }
+}
