@@ -36,6 +36,8 @@ html, body {
   font-family: 'Sora', sans-serif;
   background: linear-gradient(to right, #000000 23%, #000068 100%);
   color: #fff;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 .wrapper {
@@ -430,6 +432,10 @@ html, body {
 }
 
 @media (max-width: 468px) {
+  html {
+    scroll-padding-top: 70px;
+  }
+
   /* Hide nav initially off-screen to the right */
   .hamburger {
     margin-top: 0;

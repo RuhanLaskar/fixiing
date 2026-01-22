@@ -62,6 +62,12 @@
       hamburgerBtn.addEventListener('click', () => {
         hamburgerBtn.classList.toggle('active');
         mainNav.classList.toggle('active');
+
+        if (mainNav.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
       });
 
       // Close menu when any link is clicked
@@ -69,6 +75,7 @@
         link.addEventListener('click', () => {
           hamburgerBtn.classList.remove('active');
           mainNav.classList.remove('active');
+          document.body.style.overflow = '';
         });
       });
     </script>
