@@ -121,6 +121,12 @@ textarea {
   padding: 0.5rem 0;
   outline: none;
   font-size: 1rem;
+  transition: border-bottom-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-bottom-color: #8F98FF;
 }
 
 input::placeholder,
