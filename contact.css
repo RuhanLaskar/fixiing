@@ -256,3 +256,10 @@ textarea::placeholder {
     padding-top: 30px; /* Hide the right section on small screens */
   }
 }
+
+/* Accessibility: Visible focus styles */
+input:focus,
+textarea:focus {
+  border-bottom: 2px solid #AC134B;
+  outline: none;
+}
