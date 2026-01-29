@@ -256,3 +256,16 @@ textarea::placeholder {
     padding-top: 30px; /* Hide the right section on small screens */
   }
 }
+
+/* Accessibility Enhancements */
+.required-star {
+  color: #AC134B;
+  margin-left: 2px;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #AC134B;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
