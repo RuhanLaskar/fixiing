@@ -36,7 +36,7 @@
         </div>
 
         <!-- Hamburger Button -->
-        <button class="hamburger" id="hamburger-btn" >
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -60,6 +60,8 @@
 
       // Toggle hamburger menu
       hamburgerBtn.addEventListener('click', () => {
+        const expanded = hamburgerBtn.getAttribute('aria-expanded') === 'true' || false;
+        hamburgerBtn.setAttribute('aria-expanded', !expanded);
         hamburgerBtn.classList.toggle('active');
         mainNav.classList.toggle('active');
       });
@@ -67,16 +69,17 @@
       // Close menu when any link is clicked
       navLinks.forEach(link => {
         link.addEventListener('click', () => {
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
           hamburgerBtn.classList.remove('active');
           mainNav.classList.remove('active');
         });
       });
     </script>
 
-<div id="fakeSiteWarningModal">
+<div id="fakeSiteWarningModal" role="dialog" aria-modal="true" aria-labelledby="warning-title">
   <div class="warning-popup-content">
-    <span class="warning-close-btn" onclick="closeFakeSiteWarning()">&times;</span>
-    <strong>Important Notice</strong>
+    <button type="button" class="warning-close-btn" aria-label="Close warning" onclick="closeFakeSiteWarning()">&times;</button>
+    <strong id="warning-title">Important Notice</strong>
     <p>
       Please be cautious of individuals claiming to represent our team.
       To verify their authenticity, kindly request an email from their official Fusion Hive address

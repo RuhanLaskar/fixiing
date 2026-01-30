@@ -1,0 +1,14 @@
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /index.html HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /hero-section.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /our-winning-recipe.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /our-services.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /our-project.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /style4.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /style3.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /filp-card.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /our-clients.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /contact.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /footer.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /case-study.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /client-testimonial.css HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 19:57:25] "GET /main.js HTTP/1.1" 200 -
