@@ -36,7 +36,7 @@
         </div>
 
         <!-- Hamburger Button -->
-        <button class="hamburger" id="hamburger-btn" >
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -75,7 +75,7 @@
 
 <div id="fakeSiteWarningModal">
   <div class="warning-popup-content">
-    <span class="warning-close-btn" onclick="closeFakeSiteWarning()">&times;</span>
+    <button type="button" class="warning-close-btn" onclick="closeFakeSiteWarning()" aria-label="Close warning modal">&times;</button>
     <strong>Important Notice</strong>
     <p>
       Please be cautious of individuals claiming to represent our team.
@@ -94,6 +94,13 @@
   // Optional: Auto-show on load
   window.addEventListener('DOMContentLoaded', function () {
     document.getElementById('fakeSiteWarningModal').style.display = 'flex';
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeFakeSiteWarning();
+    }
   });
 </script>
 
