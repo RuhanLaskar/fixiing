@@ -128,6 +128,12 @@ textarea::placeholder {
   color: #777;
 }
 
+input:focus,
+textarea:focus {
+  border-bottom-color: #8F98FF;
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .full-width {
   width: 100%;
 }
