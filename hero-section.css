@@ -108,7 +108,7 @@ html, body {
   text-decoration: none;
   font-size: 20px;
   font-weight: 500;
-  transition: 
+  transition:
     background 0.3s ease,
     color 0.3s ease,
     border-radius 0.3s ease,
@@ -695,16 +695,26 @@ html, body {
   font-size: 22px;
   color: #ffffffaa;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  line-height: 1;
 }
 
 .warning-close-btn:hover {
   color: white;
 }
 
+.warning-close-btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* Loading screen */
 
 
-@media screen and (max-width: 378px) {  
+@media screen and (max-width: 378px) {
 
   .h1 {
     font-size: 32px;
