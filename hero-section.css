@@ -695,6 +695,9 @@ html, body {
   font-size: 22px;
   color: #ffffffaa;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .warning-close-btn:hover {
