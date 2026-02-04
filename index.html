@@ -73,10 +73,10 @@
       });
     </script>
 
-<div id="fakeSiteWarningModal">
+<div id="fakeSiteWarningModal" role="dialog" aria-modal="true" aria-labelledby="warning-title">
   <div class="warning-popup-content">
-    <span class="warning-close-btn" onclick="closeFakeSiteWarning()">&times;</span>
-    <strong>Important Notice</strong>
+    <button class="warning-close-btn" type="button" aria-label="Close warning" onclick="closeFakeSiteWarning()">&times;</button>
+    <strong id="warning-title">Important Notice</strong>
     <p>
       Please be cautious of individuals claiming to represent our team.
       To verify their authenticity, kindly request an email from their official Fusion Hive address
@@ -93,7 +93,18 @@
 
   // Optional: Auto-show on load
   window.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('fakeSiteWarningModal').style.display = 'flex';
+    const modal = document.getElementById('fakeSiteWarningModal');
+    modal.style.display = 'flex';
+
+    // Focus close button and handle Escape key
+    const closeBtn = modal.querySelector('.warning-close-btn');
+    if (closeBtn) closeBtn.focus();
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.style.display === 'flex') {
+        closeFakeSiteWarning();
+      }
+    });
   });
 </script>
 
