@@ -36,7 +36,7 @@
         </div>
 
         <!-- Hamburger Button -->
-        <button class="hamburger" id="hamburger-btn" >
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -60,8 +60,9 @@
 
       // Toggle hamburger menu
       hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
+        const isExpanded = hamburgerBtn.classList.toggle('active');
         mainNav.classList.toggle('active');
+        hamburgerBtn.setAttribute('aria-expanded', isExpanded);
       });
 
       // Close menu when any link is clicked
@@ -69,6 +70,7 @@
         link.addEventListener('click', () => {
           hamburgerBtn.classList.remove('active');
           mainNav.classList.remove('active');
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
         });
       });
     </script>
@@ -132,10 +134,10 @@
                         </div>
                     </div>
                 </div>
-            </section>    
+            </section>
 
 
-            
+
 <!-- Our Services Section -->
 <section class="services-section" id="services">
   <!-- Background Spiral -->
@@ -974,7 +976,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <div class="clients-slider5">
 
-      
+
       <div class="clients-track5">
         <!-- Client Logo + Divider -->
         <div class="client-item5">
@@ -1094,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', () => {
           MDrehab clearly understood how to fix a patient. But when it came to fixing their social media, they had constant failures.
         </p>
         <p>
-          Reel after reel, their view count kept falling until we stepped in July 2024. Along with our creative direction, we brought 
+          Reel after reel, their view count kept falling until we stepped in July 2024. Along with our creative direction, we brought
           storytelling, better visuals, and crisper scripts, which boosted them from 212k to 450k followers within a few weeks.
         </p>
         <p>
@@ -1126,10 +1128,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- Right Side -->
     <div class="contact-right">
       <form action="https://formspree.io/f/mgvydqpl" method="POST" class="contact-form">
-        
+
         <!-- Redirect after submission -->
         <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-        
+
         <!-- Spam prevention honeypot -->
         <input type="text" name="_gotcha" style="display: none;">
 
@@ -1199,9 +1201,9 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <div class="map-container6">
-      <iframe 
-        src="https://maps.google.com/maps?q=Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-        frameborder="0" 
+      <iframe
+        src="https://maps.google.com/maps?q=Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        frameborder="0"
         allowfullscreen>
       </iframe>
 
