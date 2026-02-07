@@ -73,10 +73,10 @@
       });
     </script>
 
-<div id="fakeSiteWarningModal">
+<div id="fakeSiteWarningModal" role="dialog" aria-modal="true" aria-labelledby="warning-title">
   <div class="warning-popup-content">
-    <span class="warning-close-btn" onclick="closeFakeSiteWarning()">&times;</span>
-    <strong>Important Notice</strong>
+    <button class="warning-close-btn" onclick="closeFakeSiteWarning()" aria-label="Close warning">&times;</button>
+    <strong id="warning-title">Important Notice</strong>
     <p>
       Please be cautious of individuals claiming to represent our team.
       To verify their authenticity, kindly request an email from their official Fusion Hive address
@@ -88,14 +88,25 @@
 
 <script>
   function closeFakeSiteWarning() {
+    localStorage.setItem('fakeSiteWarningSeen', 'true');
     document.getElementById('fakeSiteWarningModal').style.display = 'none';
   }
 
   // Optional: Auto-show on load
   window.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('fakeSiteWarningModal').style.display = 'flex';
+    if (!localStorage.getItem('fakeSiteWarningSeen')) {
+      document.getElementById('fakeSiteWarningModal').style.display = 'flex';
+    } else {
+      document.getElementById('fakeSiteWarningModal').style.display = 'none';
+    }
   });
-</script>
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeFakeSiteWarning();
+    }
+  });</script>
 
 
     <section class="hero-section" id="home">
